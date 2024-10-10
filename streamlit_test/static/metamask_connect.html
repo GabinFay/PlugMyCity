@@ -1,0 +1,19 @@
+<script>
+    async function connectMetaMask() {
+       if (typeof window.ethereum !== 'undefined') {
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          const account = accounts[0];
+          fetch('http://localhost:8000/connect.php', {
+             method: 'POST',
+             headers: {
+                'Content-Type': 'application/json',
+             },
+             body: JSON.stringify({ account: account }),
+          });
+       } else {
+          console.log('MetaMask not found');
+       }
+    }
+    connectMetaMask();
+    </script>
+    
